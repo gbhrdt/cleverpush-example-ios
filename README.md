@@ -1,3 +1,3 @@
 # CleverPush Example Project for iOS
 
-* TODO: Change Bundle Identifier to match with your CleverPush channel settings
+* TODO: Specify Channel ID in AppDelegate.m or change Bundle Identifier to match with your CleverPush channel settings
