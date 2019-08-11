@@ -19,8 +19,11 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // TODO: We can specify the Channel ID here, but do not have to. If we leave it out CleverPush tries to find it via the App's Bundle ID. The Bundle ID has to be set in the CleverPush channel settings.
     
-    [CleverPush initWithLaunchOptions:launchOptions handleNotificationOpened:^(CPNotificationOpenedResult *result) {
+    [CleverPush initWithLaunchOptions:launchOptions
+             handleNotificationOpened:^(CPNotificationOpenedResult *result) {
         NSLog(@"Received Notification with URL: %@", [result.notification valueForKey:@"url"]);
+    
+        NSLog(@"CleverPush.getNotifications: %@", [CleverPush getNotifications]);
         
         UIAlertController* alert = [UIAlertController alertControllerWithTitle:[result.notification valueForKey:@"title"]
                                                                        message:[result.notification valueForKey:@"text"]

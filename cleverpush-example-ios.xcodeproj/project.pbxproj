@@ -84,6 +84,7 @@
 		29627E3222CA7133009D6597 /* NotificationService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationService.h; sourceTree = "<group>"; };
 		29627E3322CA7133009D6597 /* NotificationService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationService.m; sourceTree = "<group>"; };
 		29627E3522CA7133009D6597 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		29F8CE6522E2108B00C9D634 /* CleverPushNotificationServiceExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CleverPushNotificationServiceExtension.entitlements; sourceTree = "<group>"; };
 		3E4E55C9C12766114DBC0AB8 /* Pods-cleverpush-example-iosUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cleverpush-example-iosUITests.debug.xcconfig"; path = "Target Support Files/Pods-cleverpush-example-iosUITests/Pods-cleverpush-example-iosUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		42F1B921B4581F2122DB3C7E /* Pods-CleverPushNotificationServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CleverPushNotificationServiceExtension.debug.xcconfig"; path = "Target Support Files/Pods-CleverPushNotificationServiceExtension/Pods-CleverPushNotificationServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		64C22D9514E8A6BCD750C026 /* Pods-cleverpush-example-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cleverpush-example-ios.debug.xcconfig"; path = "Target Support Files/Pods-cleverpush-example-ios/Pods-cleverpush-example-ios.debug.xcconfig"; sourceTree = "<group>"; };
@@ -206,6 +207,7 @@
 		29627E3122CA7133009D6597 /* CleverPushNotificationServiceExtension */ = {
 			isa = PBXGroup;
 			children = (
+				29F8CE6522E2108B00C9D634 /* CleverPushNotificationServiceExtension.entitlements */,
 				29627E3222CA7133009D6597 /* NotificationService.h */,
 				29627E3322CA7133009D6597 /* NotificationService.m */,
 				29627E3522CA7133009D6597 /* Info.plist */,
@@ -319,6 +321,9 @@
 					29627DF322CA6ECE009D6597 = {
 						CreatedOnToolsVersion = 10.2.1;
 						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
@@ -337,6 +342,11 @@
 					};
 					29627E2F22CA7132009D6597 = {
 						CreatedOnToolsVersion = 10.2.1;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -785,6 +795,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 42F1B921B4581F2122DB3C7E /* Pods-CleverPushNotificationServiceExtension.debug.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = CleverPushNotificationServiceExtension/CleverPushNotificationServiceExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KWJDGZUQ72;
 				INFOPLIST_FILE = CleverPushNotificationServiceExtension/Info.plist;
@@ -804,6 +815,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B52D4A628634D54438C1FB40 /* Pods-CleverPushNotificationServiceExtension.release.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = CleverPushNotificationServiceExtension/CleverPushNotificationServiceExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KWJDGZUQ72;
 				INFOPLIST_FILE = CleverPushNotificationServiceExtension/Info.plist;
