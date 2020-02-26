@@ -21,12 +21,15 @@
 @implementation NotificationService
 
 - (void)didReceiveNotificationRequest:(UNNotificationRequest *)request withContentHandler:(void (^)(UNNotificationContent * _Nonnull))contentHandler {
+
+    NSLog(@"Example App: didReceiveNotificationRequest");
+    
     self.receivedRequest = request;
     self.contentHandler = contentHandler;
     self.bestAttemptContent = [request.content mutableCopy];
     
     [CleverPush didReceiveNotificationExtensionRequest:self.receivedRequest withMutableNotificationContent:self.bestAttemptContent];
-    
+
     self.contentHandler(self.bestAttemptContent);
 }
 

@@ -17,12 +17,18 @@ target 'cleverpush-example-ios' do
     # Pods for testing
   end
 
-  pod 'CleverPush'
+  pod 'CleverPush', '0.2.3'
 
 end
 
 target 'CleverPushNotificationServiceExtension' do
 
-  pod 'CleverPush'
+  pod 'CleverPush', '0.2.3'
+
+end
+
+target 'CleverPushNotificationContentExtension' do
+
+  pod 'CleverPush', '0.2.3'
 
 end

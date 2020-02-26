@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import <CleverPush/CleverPush.h>
+#import <CleverPushLocation/CleverPushLocation.h>
 
 @interface AppDelegate ()
 
@@ -20,23 +21,43 @@
     // TODO: We can specify the Channel ID here, but do not have to. If we leave it out CleverPush tries to find it via the App's Bundle ID. The Bundle ID has to be set in the CleverPush channel settings.
     
     [CleverPush initWithLaunchOptions:launchOptions
+     channelId:@"7R8nkAxtrY5wy5TsS"
              handleNotificationOpened:^(CPNotificationOpenedResult *result) {
-        NSLog(@"Received Notification with URL: %@", [result.notification valueForKey:@"url"]);
+        // NSLog(@"Received Notification with URL: %@", [result.notification valueForKey:@"url"]);
     
-        NSLog(@"CleverPush.getNotifications: %@", [CleverPush getNotifications]);
+        // NSLog(@"CleverPush.getNotifications: %@", [CleverPush getNotifications]);
         
-        UIAlertController* alert = [UIAlertController alertControllerWithTitle:[result.notification valueForKey:@"title"]
-                                                                       message:[result.notification valueForKey:@"text"]
-                                                                preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                                              handler:^(UIAlertAction * action) {}];
-        
-        [alert addAction:defaultAction];
-        [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alert animated:YES completion:nil];
+        if ([[[result notification] valueForKey:@"chatNotification"] boolValue]) {
+            UITabBarController *tabBarController = (UITabBarController *) self.window.rootViewController;
+            [tabBarController setSelectedIndex:1];
+            
+        } else {
+            UIAlertController* alert = [UIAlertController alertControllerWithTitle:[result.notification valueForKey:@"title"]
+                                                                           message:@""
+                                                                    preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                                  handler:^(UIAlertAction * action) {}];
+            
+            [alert addAction:defaultAction];
+            [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alert animated:YES completion:nil];
+        }
     } handleSubscribed:^(NSString *subscriptionId) {
-        NSLog(@"Subscribed to CleverPush with ID: %@", subscriptionId);
+        NSLog(@"** handleSubscribed ** Subscribed to CleverPush with ID: %@", subscriptionId);
+        
+        [CleverPush getAvailableTopics:^(NSArray* channelTopics) {
+            NSLog(@"CleverPush CHANNEL TOPICS Callback %@", channelTopics);
+        }];
+        
+        [CleverPush getChannelConfig:^(NSDictionary *config) {
+            NSLog(@"** CleverPush getChannelConfig Callback %@", config);
+        }];
     }];
+    
+    [CleverPush setAutoClearBadge:NO];
+    
+    [CleverPushLocation init];
+    [CleverPushLocation requestLocationPermission];
     
     return YES;
 }
